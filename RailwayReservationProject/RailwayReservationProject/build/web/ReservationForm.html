@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservation Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .reservation-container {
+            width: 450px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007BFF;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reservation-container">
+        <h2>Reservation Form</h2>
+        <form action="ReservationServlet" method="post" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="trainNumber">Train Number:</label>
+            <input type="text" id="trainNumber" name="trainNumber" required>
+
+            <label for="classType">Class Type:</label>
+            <select id="classType" name="classType" required>
+                <option value="">Select Class Type</option>
+                <option value="First Class">First Class</option>
+                <option value="Second Class">Second Class</option>
+                <!-- Add more class options as needed -->
+            </select>
+
+            <label for="journeyDate">Date of Journey:</label>
+            <input type="date" id="journeyDate" name="journeyDate" required>
+
+            <label for="fromPlace">From (Place):</label>
+            <input type="text" id="fromPlace" name="fromPlace" required>
+
+            <label for="toDestination">To (Destination):</label>
+            <input type="text" id="toDestination" name="toDestination" required>
+
+            <input type="submit" value="Book Now">
+        </form>
+        <p class="error-message" id="error-message"></p>
+    </div>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var trainNumber = document.getElementById("trainNumber").value;
+            var classType = document.getElementById("classType").value;
+            var journeyDate = document.getElementById("journeyDate").value;
+            var fromPlace = document.getElementById("fromPlace").value;
+            var toDestination = document.getElementById("toDestination").value;
+
+            if (name.trim() === '' || trainNumber.trim() === '' || classType === '' || journeyDate === '' || fromPlace.trim() === '' || toDestination.trim() === '') {
+                document.getElementById("error-message").textContent = "Please fill in all the required fields.";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

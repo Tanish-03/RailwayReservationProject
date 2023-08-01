@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cancellation Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .cancellation-container {
+            width: 400px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007BFF;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message,
+        .confirmation-message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="cancellation-container">
+        <h2>Cancellation Form</h2>
+        <form action="CancellationServlet" method="post">
+            <label for="pnrNumber">Enter PNR Number:</label>
+            <input type="text" id="pnrNumber" name="pnrNumber" required>
+
+            <input type="submit" value="Check & Cancel">
+        </form>
+        <p class="error-message" id="error-message"></p>
+        <p class="confirmation-message" id="confirmation-message"></p>
+    </div>
+
+    <script>
+        // Optional: You can add JavaScript code here for any dynamic functionality
+        // For example, you can use JavaScript to display error or confirmation messages
+
+        // JavaScript code to display confirmation message after successful cancellation
+        function showConfirmationMessage() {
+            var confirmationMessage = document.getElementById("confirmation-message");
+            confirmationMessage.textContent = "Your reservation has been successfully cancelled.";
+        }
+
+        // JavaScript code to display error message for invalid PNR number
+        function showErrorMessage() {
+            var errorMessage = document.getElementById("error-message");
+            errorMessage.textContent = "Invalid PNR number. Please check and try again.";
+        }
+
+        // JavaScript function to clear error and confirmation messages after form submission
+        function clearMessages() {
+            var errorMessage = document.getElementById("error-message");
+            var confirmationMessage = document.getElementById("confirmation-message");
+            errorMessage.textContent = "";
+            confirmationMessage.textContent = "";
+        }
+
+        // Attach the clearMessages function to the form submission event
+        var form = document.querySelector("form");
+        form.addEventListener("submit", clearMessages);
+    </script>
+</body>
+</html>
